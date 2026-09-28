@@ -1,0 +1,241 @@
+/* =========================================
+   1. CSS Variables & Reset
+   ========================================= */
+:root {
+  /* Colors */
+  --bg-color: #121212;       /* Deep dark background */
+  --surface-color: #1e1e1e;  /* Slightly lighter dark for sections */
+  --text-main: #e0e0e0;      /* Off-white for general text */
+  --text-muted: #aaaaaa;     /* Gray for descriptions/notes */
+ 
+  --primary-accent: #ffffff; /* Bright red for "GRILL" and prices */
+  --secondary-accent: #ff0000; /* Amber/Gold for "PIZZA" and highlights */
+  --border-color: #333333;   /* Dark borders */
+ 
+  /* Typography */
+  --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: 'Oswald', 'Arial Black', sans-serif; /* For headers */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  padding-bottom: 40px; /* Space before footer */
+}
+
+/* =========================================
+   2. Header & Branding
+   ========================================= */
+.menu-header {
+  background-color: var(--surface-color);
+  text-align: center;
+  padding: 40px 20px;
+  border-bottom: 4px solid var(--border-color);
+  position: relative; /* For back button placement */
+}
+
+.brand {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+/* "GRILL" is Red */
+.brand span {
+  color: var(--primary-accent);
+}
+
+/* "& PIZZA" is Gold */
+.brand b {
+  color: var(--secondary-accent);
+  font-weight: 900;
+  margin-left: 5px;
+}
+
+.menu-header p {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--bg-color);
+  background-color: var(--text-main);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #ffffff;
+}
+
+/* On desktop, move back button to the side */
+@media (min-width: 768px) {
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+}
+
+/* =========================================
+   3. Main Menu Layout
+   ========================================= */
+.menu {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.menu-section {
+  background-color: var(--surface-color);
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.menu-section h2 {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: #ffffff;
+  border-bottom: 2px solid var(--primary-accent);
+  display: inline-block;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.note {
+  color: var(--secondary-accent);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   4. Item Styling & Grid
+   ========================================= */
+.items {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: 1 column */
+  gap: 15px;
+}
+
+/* Apply 2 columns on desktop for general items */
+@media (min-width: 768px) {
+  .items:not(.pizza-grid) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+article {
+  padding: 10px 0;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+/* Remove border from last items in grid on desktop */
+@media (min-width: 768px) {
+  .items:not(.pizza-grid) article:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+}
+
+article h3 {
+  display: flex;
+  justify-content: space-between; /* Pushes price to the right */
+  align-items: baseline;
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+article h3 span {
+  color: var(--primary-accent);  /* Price color */
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 15px;
+  white-space: nowrap; /* Prevents price from wrapping */
+}
+
+article p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+/* =========================================
+   5. Special Grid for Pizzor (3 Cols on Desktop)
+   ========================================= */
+@media (min-width: 992px) {
+  .pizza-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+   
+  .pizza-grid article {
+    border-bottom: 1px solid #2a2a2a;
+    padding: 15px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 4px;
+  }
+}
+
+/* =========================================
+   6. Special Handling for Side Orders/Sallad
+   ========================================= */
+/* Force 2 columns even on smaller tablets */
+@media (min-width: 600px) {
+  .two-col {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* =========================================
+   7. Extra Info & Footer
+   ========================================= */
+.extra {
+  background-color: rgba(245, 158, 11, 0.1);
+  border: 1px dashed var(--secondary-accent);
+  color: var(--secondary-accent);
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+footer strong {
+  color: #ffffff;
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 5px;
+} 
