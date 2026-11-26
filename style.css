@@ -508,12 +508,14 @@ header {
 }
 
 .social-btn {
-    display: inline-block;
+    display: block;
+    width: fit-content;
     margin-top: 15px;
     padding: 8px 0;
     color: #e1306c;
     font-weight: 700;
     text-decoration: none;
+    
 }
 
 .map-wrap {
