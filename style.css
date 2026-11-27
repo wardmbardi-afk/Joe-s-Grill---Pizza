@@ -207,7 +207,7 @@ header {
 .hero {
     min-height: 100vh;
     min-height: 100svh;
-    background: url('background.png') center/cover no-repeat;
+    background: url('images/background.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     position: relative;
